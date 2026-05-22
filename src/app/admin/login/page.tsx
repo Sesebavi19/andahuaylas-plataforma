@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MapPin, Eye, EyeOff, Loader2 } from "lucide-react";
+import { loginAction } from "./actions";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -15,38 +16,24 @@ export default function AdminLogin() {
     setError("");
 
     if (!email || !password) {
-      setError("Ingresa correo y contraseÃ±a");
+      setError("Ingresa correo y contraseña");
       return;
     }
 
     setLoading(true);
 
     try {
-      console.log("[Login] Intentando autenticar:", email);
+      const result = await loginAction(email, password);
 
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-      console.log("[Login] Respuesta API:", data);
-
-      if (!res.ok) {
-        if (res.status === 401) {
-          setError("Correo o contraseÃ±a incorrectos");
-        } else {
-          setError(data.error || "Error al iniciar sesiÃ³n");
-        }
+      if (result.error) {
+        setError(result.error);
         return;
       }
 
-      console.log("[Login] Redirigiendo a /admin/dashboard");
       window.location.href = "/admin/dashboard";
     } catch (err) {
-      console.error("[Login] ExcepciÃ³n:", err);
-      setError("Error de conexiÃ³n con el servidor de autenticaciÃ³n");
+      console.error("[Login] Excepción:", err);
+      setError("Error de conexión con el servidor de autenticación");
     } finally {
       setLoading(false);
     }
@@ -61,17 +48,17 @@ export default function AdminLogin() {
               <MapPin className="w-8 h-8 text-secondary" />
             </div>
             <h1 className="text-2xl font-bold text-primary tracking-tight">
-              Andahuaylas Go
+              Andahuaylas GO
             </h1>
             <p className="text-sm text-on-surface-variant mt-2">
-              Acceso al Panel de AdministraciÃ³n
+              Acceso al Panel de Administración
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                Correo ElectrÃ³nico
+                Correo Electrónico
               </label>
               <input
                 type="email"
@@ -84,12 +71,12 @@ export default function AdminLogin() {
 
             <div className="space-y-2">
               <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                ContraseÃ±a
+                Contraseña
               </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••••"
                   className="w-full px-6 py-4 bg-surface-container rounded-2xl border border-outline-variant/30 focus:ring-2 focus:ring-secondary/20 outline-none transition-all pr-12"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -120,12 +107,12 @@ export default function AdminLogin() {
               className="w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : null}
-              {loading ? "Ingresando..." : "Iniciar SesiÃ³n"}
+              {loading ? "Ingresando..." : "Iniciar Sesión"}
             </button>
           </form>
 
           <p className="text-center text-[10px] text-outline uppercase tracking-widest mt-10">
-            Plataforma de InformaciÃ³n TurÃ­stica Centralizada
+            Plataforma de Información Turística Centralizada
           </p>
         </div>
       </div>
