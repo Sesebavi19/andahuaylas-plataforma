@@ -42,7 +42,7 @@ export default function AdminLayout({
               Andahuaylas Go
             </Link>
             <p className="text-xs text-on-surface-variant mt-1">
-              Admin Console - Apur�mac
+              Admin Console - ApurÃ­mac
             </p>
           </div>
 

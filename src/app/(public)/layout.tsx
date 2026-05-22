@@ -8,7 +8,7 @@ import SearchBar from "@/components/SearchBar";
 
 const NAV_LINKS = [
   { href: "/explore", label: "Explore" },
-  { href: "/gastronomia", label: "Gastronomía" },
+  { href: "/gastronomia", label: "GastronomÃ­a" },
   { href: "/comercios", label: "Comercio" },
 ];
 
@@ -105,7 +105,7 @@ export default function PublicLayout({
                 Explorar
               </Link>
               <Link href="/gastronomia" className="hover:text-white transition-colors">
-                Gastronomía
+                GastronomÃ­a
               </Link>
               <Link href="/comercios" className="hover:text-white transition-colors">
                 Comercios

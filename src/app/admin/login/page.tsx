@@ -15,7 +15,7 @@ export default function AdminLogin() {
     setError("");
 
     if (!email || !password) {
-      setError("Ingresa correo y contraseña");
+      setError("Ingresa correo y contraseÃ±a");
       return;
     }
 
@@ -35,9 +35,9 @@ export default function AdminLogin() {
 
       if (!res.ok) {
         if (res.status === 401) {
-          setError("Correo o contraseña incorrectos");
+          setError("Correo o contraseÃ±a incorrectos");
         } else {
-          setError(data.error || "Error al iniciar sesión");
+          setError(data.error || "Error al iniciar sesiÃ³n");
         }
         return;
       }
@@ -45,8 +45,8 @@ export default function AdminLogin() {
       console.log("[Login] Redirigiendo a /admin/dashboard");
       window.location.href = "/admin/dashboard";
     } catch (err) {
-      console.error("[Login] Excepción:", err);
-      setError("Error de conexión con el servidor de autenticación");
+      console.error("[Login] ExcepciÃ³n:", err);
+      setError("Error de conexiÃ³n con el servidor de autenticaciÃ³n");
     } finally {
       setLoading(false);
     }
@@ -64,14 +64,14 @@ export default function AdminLogin() {
               Andahuaylas Go
             </h1>
             <p className="text-sm text-on-surface-variant mt-2">
-              Acceso al Panel de Administración
+              Acceso al Panel de AdministraciÃ³n
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                Correo Electrónico
+                Correo ElectrÃ³nico
               </label>
               <input
                 type="email"
@@ -84,12 +84,12 @@ export default function AdminLogin() {
 
             <div className="space-y-2">
               <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                Contraseña
+                ContraseÃ±a
               </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                   className="w-full px-6 py-4 bg-surface-container rounded-2xl border border-outline-variant/30 focus:ring-2 focus:ring-secondary/20 outline-none transition-all pr-12"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -120,12 +120,12 @@ export default function AdminLogin() {
               className="w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : null}
-              {loading ? "Ingresando..." : "Iniciar Sesión"}
+              {loading ? "Ingresando..." : "Iniciar SesiÃ³n"}
             </button>
           </form>
 
           <p className="text-center text-[10px] text-outline uppercase tracking-widest mt-10">
-            Plataforma de Información Turística Centralizada
+            Plataforma de InformaciÃ³n TurÃ­stica Centralizada
           </p>
         </div>
       </div>
