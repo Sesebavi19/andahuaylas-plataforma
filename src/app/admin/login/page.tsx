@@ -24,7 +24,7 @@ export default async function AdminLogin({
           </div>
 
           <form
-            action="/api/auth/login"
+            action="/admin/login"
             method="POST"
             className="space-y-6"
           >
