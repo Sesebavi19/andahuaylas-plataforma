@@ -118,6 +118,7 @@ export default function PublicLayout({
             </h4>
             <div className="flex flex-col space-y-2 text-sm text-on-primary-container/70">
               <span>Plataforma de Información Turística</span>
+              <span>Soporte</span>
               <span>Andahuaylas, Apurímac</span>
             </div>
           </div>

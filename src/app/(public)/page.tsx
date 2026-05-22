@@ -18,6 +18,19 @@ import { PlaceCategory } from "@/types";
 import { Place } from "@/types";
 import { getPlaces } from "@/lib/supabase/queries";
 import SearchBar from "@/components/SearchBar";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
+import {
+  MAPS_API_KEY,
+  MAP_ID,
+  DEFAULT_CENTER,
+  DEFAULT_ZOOM,
+  hasValidMapKey,
+} from "@/lib/maps/config";
 
 export default function Home() {
   const router = useRouter();
@@ -36,7 +49,7 @@ export default function Home() {
       <section className="relative h-[650px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://picsum.photos/seed/andahuaylas_hero/1920/1080?blur=2"
+            src="/images/celajes.jpg"
             alt="Andean Landscape"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -56,7 +69,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-surface-bright/90 mb-10 max-w-2xl drop-shadow-sm leading-relaxed"
+            className="text-lg md:text-xl text-white mb-10 max-w-2xl drop-shadow-sm leading-relaxed"
           >
             Tu plataforma integral para explorar el patrimonio, comercio y
             cultura de la región Apurímac.
@@ -202,21 +215,48 @@ export default function Home() {
               <MapIcon className="w-5 h-5" /> Abrir Mapa Completo
             </Link>
           </div>
-          <div className="w-full md:w-2/3 aspect-video bg-surface-variant rounded-3xl overflow-hidden shadow-2xl relative border-8 border-surface-container-lowest">
-            <img
-              src="https://picsum.photos/seed/map_preview/1200/800"
-              alt="Map Preview"
-              className="w-full h-full object-cover opacity-60"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-full shadow-lg border border-outline-variant flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
-                <span className="font-bold text-primary">
-                  Navegación Interactiva Activa
-                </span>
+          <div className="w-full md:w-2/3 aspect-video rounded-3xl overflow-hidden shadow-2xl relative border-8 border-surface-container-lowest">
+            {hasValidMapKey ? (
+              <APIProvider apiKey={MAPS_API_KEY}>
+                <Map
+                  mapId={MAP_ID}
+                  defaultZoom={DEFAULT_ZOOM}
+                  defaultCenter={DEFAULT_CENTER}
+                  gestureHandling="cooperative"
+                  className="w-full h-full"
+                >
+                  {places.map((place) => (
+                    <AdvancedMarker
+                      key={place.id}
+                      position={{ lat: place.coordinates.lat, lng: place.coordinates.lng }}
+                    >
+                      <Pin
+                        background={
+                          place.category === PlaceCategory.TURISMO
+                            ? "#16a34a"
+                            : place.category === PlaceCategory.GASTRONOMIA
+                            ? "#ea580c"
+                            : place.category === PlaceCategory.COMERCIO
+                            ? "#2563eb"
+                            : "#7c3aed"
+                        }
+                        glyphColor="#fff"
+                        borderColor="#fff"
+                      />
+                    </AdvancedMarker>
+                  ))}
+                </Map>
+              </APIProvider>
+            ) : (
+              <div className="w-full h-full bg-surface-variant flex items-center justify-center">
+                <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-full shadow-lg border border-outline-variant flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
+                  <span className="font-bold text-primary">
+                    Navegación Interactiva Activa
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

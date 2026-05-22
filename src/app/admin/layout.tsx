@@ -85,13 +85,7 @@ export default function AdminLayout({
               <Settings className="w-5 h-5" />
               Configuración
             </Link>
-            <Link
-              href="/admin/support"
-              className="flex items-center gap-3 px-8 py-3 text-sm text-on-surface-variant hover:bg-surface-container-high transition-all"
-            >
-              <HelpCircle className="w-5 h-5" />
-              Soporte
-            </Link>
+
             <div className="px-8 py-4 flex items-center gap-3 mt-4 border-t border-outline-variant/10">
               <div className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center bg-primary-fixed text-primary font-bold">
                 A

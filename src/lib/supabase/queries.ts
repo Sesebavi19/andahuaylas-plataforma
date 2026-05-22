@@ -166,7 +166,7 @@ export async function insertPlace(place: {
       rango_precio: place.priceRange || null,
       etiquetas: place.tags,
       imagen_url: place.imageUrl,
-      activo: false,
+      activo: true,
       rating: 0,
       reviews_count: 0,
       galeria: [],
