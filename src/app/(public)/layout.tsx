@@ -8,7 +8,7 @@ import SearchBar from "@/components/SearchBar";
 
 const NAV_LINKS = [
   { href: "/explore", label: "Explore" },
-  { href: "/gastronomia", label: "GastronomÃ­a" },
+  { href: "/gastronomia", label: "Gastronomía" },
   { href: "/comercios", label: "Comercio" },
 ];
 
@@ -105,7 +105,7 @@ export default function PublicLayout({
                 Explorar
               </Link>
               <Link href="/gastronomia" className="hover:text-white transition-colors">
-                GastronomÃ­a
+                Gastronomía
               </Link>
               <Link href="/comercios" className="hover:text-white transition-colors">
                 Comercios
@@ -117,9 +117,8 @@ export default function PublicLayout({
               Contacto
             </h4>
             <div className="flex flex-col space-y-2 text-sm text-on-primary-container/70">
-              <a href="mailto:sesebavi@gmail.com" className="hover:text-white transition-colors">
-                sesebavi@gmail.com
-              </a>
+              <span>Plataforma de Información Turística</span>
+              <span>Andahuaylas, Apurímac</span>
             </div>
           </div>
         </div>

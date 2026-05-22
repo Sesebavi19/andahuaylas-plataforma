@@ -181,3 +181,64 @@ export async function insertPlace(place: {
 
   return data.id;
 }
+
+export async function updatePlace(
+  id: string,
+  place: {
+    name: string;
+    category: PlaceCategory;
+    subcategory?: string;
+    description: string;
+    address: string;
+    district: string;
+    phone: string;
+    website: string;
+    hours: string;
+    priceRange: string;
+    tags: string[];
+    imageUrl: string;
+    lat: number;
+    lng: number;
+  }
+): Promise<boolean> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("lugares")
+    .update({
+      nombre: place.name,
+      tipo: CATEGORY_TO_TIPO[place.category],
+      categoria: place.subcategory || place.category,
+      subcategoria: place.subcategory || null,
+      descripcion: place.description,
+      direccion: place.address,
+      distrito: place.district,
+      latitud: place.lat,
+      longitud: place.lng,
+      telefono: place.phone || null,
+      sitio_web: place.website || null,
+      horario: place.hours || null,
+      rango_precio: place.priceRange || null,
+      etiquetas: place.tags,
+      imagen_url: place.imageUrl,
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error("[Queries] Error updating place:", error);
+    return false;
+  }
+
+  return true;
+}
+
+export async function deletePlace(id: string): Promise<boolean> {
+  const supabase = createClient();
+  const { error } = await supabase.from("lugares").delete().eq("id", id);
+
+  if (error) {
+    console.error("[Queries] Error deleting place:", error);
+    return false;
+  }
+
+  return true;
+}

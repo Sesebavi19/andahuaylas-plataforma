@@ -1,4 +1,5 @@
 import PlacesTable from "./PlacesTable";
+import DashboardStats from "./DashboardStats";
 
 export default function AdminDashboard() {
   return (
@@ -13,6 +14,8 @@ export default function AdminDashboard() {
           </p>
         </div>
       </header>
+
+      <DashboardStats />
 
       <div className="grid grid-cols-1 gap-8">
         <PlacesTable />
