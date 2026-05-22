@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import { login } from "./actions";
 
 export default async function AdminLogin({
   searchParams,
@@ -23,11 +24,7 @@ export default async function AdminLogin({
             </p>
           </div>
 
-          <form
-            action="/admin/login"
-            method="POST"
-            className="space-y-6"
-          >
+          <form action={login} className="space-y-6">
             <div className="space-y-2">
               <label
                 htmlFor="email"
