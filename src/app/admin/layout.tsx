@@ -15,10 +15,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const SIDEBAR_LINKS = [
-  { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/manage", label: "Manage Locations", icon: Map },
-  { href: "/admin/reviews", label: "Reviews", icon: Star },
-  { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/admin/dashboard", label: "Panel", icon: LayoutDashboard },
+  { href: "/admin/manage", label: "Administrar Lugares", icon: Map },
+  { href: "/admin/reviews", label: "Reseñas", icon: Star },
+  { href: "/admin/analytics", label: "Analíticas", icon: BarChart3 },
   { href: "/admin/admins", label: "Gestionar Admins", icon: Shield },
 ];
 
@@ -73,7 +73,7 @@ export default function AdminLayout({
               className="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 rounded-lg text-sm font-medium hover:opacity-90 transition-all shadow-sm"
             >
               <Plus className="w-4 h-4" />
-              Add New Listing
+              Añadir Lugar
             </Link>
           </div>
 
@@ -83,14 +83,14 @@ export default function AdminLayout({
               className="flex items-center gap-3 px-8 py-3 text-sm text-on-surface-variant hover:bg-surface-container-high transition-all"
             >
               <Settings className="w-5 h-5" />
-              Settings
+              Configuración
             </Link>
             <Link
               href="/admin/support"
               className="flex items-center gap-3 px-8 py-3 text-sm text-on-surface-variant hover:bg-surface-container-high transition-all"
             >
               <HelpCircle className="w-5 h-5" />
-              Support
+              Soporte
             </Link>
             <div className="px-8 py-4 flex items-center gap-3 mt-4 border-t border-outline-variant/10">
               <div className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center bg-primary-fixed text-primary font-bold">
