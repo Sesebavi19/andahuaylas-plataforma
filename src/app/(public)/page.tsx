@@ -59,7 +59,7 @@ export default function Home() {
             className="text-lg md:text-xl text-surface-bright/90 mb-10 max-w-2xl drop-shadow-sm leading-relaxed"
           >
             Tu plataforma integral para explorar el patrimonio, comercio y
-            cultura de la regi髇 Apur韒ac.
+            cultura de la regi贸n Apur铆mac.
           </motion.p>
 
           <motion.div
@@ -73,7 +73,7 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-3">
             <PillButton icon={<TreePine className="w-4 h-4" />} label="Turismo" onClick={() => router.push("/explore?cat=turismo")} />
-            <PillButton icon={<Utensils className="w-4 h-4" />} label="Gastronom韆" onClick={() => router.push("/explore?cat=gastronomia")} />
+            <PillButton icon={<Utensils className="w-4 h-4" />} label="Gastronom铆a" onClick={() => router.push("/explore?cat=gastronomia")} />
             <PillButton icon={<Store className="w-4 h-4" />} label="Comercio" onClick={() => router.push("/explore?cat=comercio")} />
             <PillButton icon={<Building2 className="w-4 h-4" />} label="Hospedaje" onClick={() => router.push("/explore?cat=hospedaje")} />
           </div>
@@ -116,7 +116,7 @@ export default function Home() {
               Atractivos Destacados
             </h2>
             <p className="text-on-surface-variant">
-              Explora las maravillas arqueol骻icas y naturales de la regi髇.
+              Explora las maravillas arqueol贸gicas y naturales de la regi贸n.
             </p>
           </div>
           <Link
@@ -167,10 +167,10 @@ export default function Home() {
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div className="w-full md:w-1/3 flex flex-col">
             <h2 className="text-3xl font-bold text-primary mb-4">
-              Navega la Regi髇
+              Navega la Regi贸n
             </h2>
             <p className="text-on-surface-variant mb-8 leading-relaxed">
-              Encuentra f醕ilmente los mejores puntos de inter閟, restaurantes y
+              Encuentra f谩cilmente los mejores puntos de inter茅s, restaurantes y
               servicios locales en nuestro mapa interactivo georreferenciado.
             </p>
             <div className="space-y-4 mb-8">
@@ -181,7 +181,7 @@ export default function Home() {
                     Andahuaylas Centro
                   </h4>
                   <p className="text-xs text-on-surface-variant">
-                    Zona comercial y gastron髆ica.
+                    Zona comercial y gastron贸mica.
                   </p>
                 </div>
               </div>
@@ -190,7 +190,7 @@ export default function Home() {
                 <div>
                   <h4 className="font-bold text-primary">Ruta Chanka</h4>
                   <p className="text-xs text-on-surface-variant">
-                    Sitios arqueol骻icos principales.
+                    Sitios arqueol贸gicos principales.
                   </p>
                 </div>
               </div>
@@ -213,7 +213,7 @@ export default function Home() {
               <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-full shadow-lg border border-outline-variant flex items-center gap-3">
                 <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
                 <span className="font-bold text-primary">
-                  Navegaci髇 Interactiva Activa
+                  Navegaci贸n Interactiva Activa
                 </span>
               </div>
             </div>

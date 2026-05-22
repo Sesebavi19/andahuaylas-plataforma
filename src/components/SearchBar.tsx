@@ -66,7 +66,7 @@ export default function SearchBar({ variant }: SearchBarProps) {
           <Search className="text-on-surface-variant ml-4 mr-2 w-5 h-5 shrink-0" />
           <input
             type="text"
-            placeholder="¿Qué estás buscando? (Ej. Laguna de Pacucha, Restaurantes...)"
+            placeholder="Â¿QuÃ© estÃ¡s buscando? (Ej. Laguna de Pacucha, Restaurantes...)"
             className="flex-grow bg-transparent border-none focus:ring-0 text-lg py-3 outline-none min-w-0"
             value={query}
             onChange={(e) => {

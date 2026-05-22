@@ -78,7 +78,7 @@ export default function AddLocation() {
         setSaveError("Error al guardar. Intenta de nuevo.");
       }
     } catch {
-      setSaveError("Error de conexión.");
+      setSaveError("Error de conexiÃ³n.");
     } finally {
       setSaving(false);
     }
@@ -98,7 +98,7 @@ export default function AddLocation() {
             Agregar Nuevo Lugar
           </h1>
           <p className="text-on-surface-variant mt-1">
-            Completa los detalles para listar un nuevo punto de interés o negocio.
+            Completa los detalles para listar un nuevo punto de interÃ©s o negocio.
           </p>
         </div>
       </header>
@@ -113,7 +113,7 @@ export default function AddLocation() {
         <div className="lg:col-span-2 space-y-8">
           <section className="bg-surface-container-lowest p-10 rounded-[40px] shadow-sm border border-outline-variant/10 space-y-8">
             <h3 className="font-bold text-lg text-primary flex items-center gap-3">
-              <Building2 className="w-5 h-5 text-secondary" /> Información General
+              <Building2 className="w-5 h-5 text-secondary" /> InformaciÃ³n General
             </h3>
 
             <div className="grid grid-cols-1 gap-6">
@@ -133,7 +133,7 @@ export default function AddLocation() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                    Categoría
+                    CategorÃ­a
                   </label>
                   <select
                     className="w-full px-6 py-4 bg-surface-container rounded-2xl border border-outline-variant/30 focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none"
@@ -143,7 +143,7 @@ export default function AddLocation() {
                     }
                   >
                     <option value={PlaceCategory.TURISMO}>Turismo</option>
-                    <option value={PlaceCategory.GASTRONOMIA}>Gastronomía</option>
+                    <option value={PlaceCategory.GASTRONOMIA}>GastronomÃ­a</option>
                     <option value={PlaceCategory.COMERCIO}>Comercio</option>
                     <option value={PlaceCategory.HOSPEDAJE}>Hospedaje</option>
                   </select>
@@ -159,7 +159,7 @@ export default function AddLocation() {
                   >
                     <option value="Andahuaylas">Andahuaylas</option>
                     <option value="Talavera">Talavera</option>
-                    <option value="San Jerónimo">San Jerónimo</option>
+                    <option value="San JerÃ³nimo">San JerÃ³nimo</option>
                     <option value="Pacucha">Pacucha</option>
                   </select>
                 </div>
@@ -167,11 +167,11 @@ export default function AddLocation() {
 
               <div className="space-y-2">
                 <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                  Descripción Detallada
+                  DescripciÃ³n Detallada
                 </label>
                 <textarea
                   rows={5}
-                  placeholder="Cuéntanos más sobre este lugar, su historia o qué ofrece..."
+                  placeholder="CuÃ©ntanos mÃ¡s sobre este lugar, su historia o quÃ© ofrece..."
                   className="w-full px-6 py-4 bg-surface-container rounded-2xl border border-outline-variant/30 focus:ring-2 focus:ring-secondary/20 outline-none transition-all resize-none"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -182,13 +182,13 @@ export default function AddLocation() {
 
           <section className="bg-surface-container-lowest p-10 rounded-[40px] shadow-sm border border-outline-variant/10 space-y-8">
             <h3 className="font-bold text-lg text-primary flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-secondary" /> Ubicación y Contacto
+              <MapPin className="w-5 h-5 text-secondary" /> UbicaciÃ³n y Contacto
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                  Dirección Exacta
+                  DirecciÃ³n Exacta
                 </label>
                 <input
                   type="text"
@@ -200,7 +200,7 @@ export default function AddLocation() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-outline uppercase tracking-wider">
-                  Número de Teléfono
+                  NÃºmero de TelÃ©fono
                 </label>
                 <input
                   type="text"
@@ -251,20 +251,20 @@ export default function AddLocation() {
               className="bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold shadow-xl hover:opacity-90 transition-all flex items-center gap-2 disabled:opacity-50"
             >
               {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-              {saving ? "Guardando..." : "Guardar Publicación"}
+              {saving ? "Guardando..." : "Guardar PublicaciÃ³n"}
             </button>
           </div>
         </div>
 
         <div className="space-y-8">
           <section className="bg-surface-container-lowest p-8 rounded-[32px] shadow-sm border border-outline-variant/10 space-y-6 text-center">
-            <h3 className="font-bold text-primary text-left">Imágenes de Portada</h3>
+            <h3 className="font-bold text-primary text-left">ImÃ¡genes de Portada</h3>
             <div className="aspect-video bg-surface-container rounded-3xl border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center gap-4 group cursor-pointer hover:border-secondary transition-all">
               <div className="p-4 bg-surface-container-highest rounded-2xl text-on-surface-variant group-hover:bg-secondary-container group-hover:text-on-secondary-container transition-all">
                 <Camera className="w-8 h-8" />
               </div>
               <div>
-                <p className="text-sm font-bold text-primary">Subir Fotografía</p>
+                <p className="text-sm font-bold text-primary">Subir FotografÃ­a</p>
                 <p className="text-[10px] text-on-surface-variant">PNG o JPG hasta 5MB</p>
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function AddLocation() {
           </section>
 
           <section className="bg-surface-container-lowest p-8 rounded-[32px] shadow-sm border border-outline-variant/10 space-y-6">
-            <h3 className="font-bold text-primary">Etiquetas de Búsqueda</h3>
+            <h3 className="font-bold text-primary">Etiquetas de BÃºsqueda</h3>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <span
@@ -310,10 +310,10 @@ export default function AddLocation() {
 
           <div className="bg-tertiary-container/10 p-8 rounded-[32px] border border-tertiary-container/20">
             <h4 className="text-sm font-bold text-tertiary mb-2 flex items-center gap-2">
-              <Tag className="w-4 h-4" /> Recomendación
+              <Tag className="w-4 h-4" /> RecomendaciÃ³n
             </h4>
             <p className="text-xs text-on-tertiary-container leading-relaxed">
-              Utiliza imágenes de alta resolución y descripciones detalladas para aumentar la visibilidad en el mapa interactivo.
+              Utiliza imÃ¡genes de alta resoluciÃ³n y descripciones detalladas para aumentar la visibilidad en el mapa interactivo.
             </p>
           </div>
         </div>

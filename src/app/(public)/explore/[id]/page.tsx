@@ -146,7 +146,7 @@ export default function PlaceDetails() {
                 <DetailItem
                   icon={<Camera className="text-secondary" />}
                   label="Vista"
-                  value="Panorámica"
+                  value="PanorÃ¡mica"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function PlaceDetails() {
             {place.gallery && place.gallery.length > 0 && (
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-primary px-4">
-                  Galería Visual
+                  GalerÃ­a Visual
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-[400px]">
                   <div className="col-span-2 row-span-2 rounded-3xl overflow-hidden border border-outline-variant/20">
@@ -226,7 +226,7 @@ export default function PlaceDetails() {
             <div className="bg-primary/95 backdrop-blur-lg p-10 rounded-[40px] text-on-primary shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-40 h-40 bg-secondary/20 rounded-full blur-3xl"></div>
               <h3 className="text-xl font-bold mb-8">
-                Información de Visita
+                InformaciÃ³n de Visita
               </h3>
 
               <div className="space-y-6">
@@ -239,7 +239,7 @@ export default function PlaceDetails() {
                   icon={
                     <Navigation className="text-secondary/80 w-5 h-5 shrink-0" />
                   }
-                  label="Dirección"
+                  label="DirecciÃ³n"
                   value={place.address || "Andahuaylas"}
                 />
                 {place.priceRange && (
@@ -270,7 +270,7 @@ export default function PlaceDetails() {
 
             <div className="bg-surface-container-low p-8 rounded-[40px] border border-outline-variant/30">
               <div className="flex justify-between items-center mb-6">
-                <h4 className="font-bold text-primary">Reseñas Recientes</h4>
+                <h4 className="font-bold text-primary">ReseÃ±as Recientes</h4>
                 <div className="text-xs font-bold text-secondary">
                   {place.reviewsCount} total
                 </div>
@@ -286,12 +286,12 @@ export default function PlaceDetails() {
                     </span>
                   </div>
                   <p className="text-xs text-on-surface-variant italic">
-                    &ldquo;Una experiencia increíble, el complejo de Sóndor es mágico al
+                    &ldquo;Una experiencia increÃ­ble, el complejo de SÃ³ndor es mÃ¡gico al
                     atardecer. Recomendado 100%.&rdquo;
                   </p>
                 </div>
                 <button className="w-full text-center text-xs font-bold text-secondary uppercase tracking-widest hover:underline">
-                  Ver todas las reseñas
+                  Ver todas las reseÃ±as
                 </button>
               </div>
             </div>

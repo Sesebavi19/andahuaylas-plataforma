@@ -37,12 +37,12 @@ export default function AdminDashboard() {
             Panel de Control
           </h1>
           <p className="text-on-surface-variant mt-1">
-            Monitorea el movimiento turístico y comercial de la región.
+            Monitorea el movimiento turÃ­stico y comercial de la regiÃ³n.
           </p>
         </div>
         <div className="flex gap-3">
           <div className="bg-surface-container-highest px-4 py-2 rounded-xl text-sm font-medium border border-outline-variant/30 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-secondary" />Últimas 24 horas
+            <Clock className="w-4 h-4 text-secondary" />Ãšltimas 24 horas
           </div>
         </div>
       </header>
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
           icon={<Landmark className="w-5 h-5 text-tertiary" />}
         />
         <StatWidget
-          label="Promedio Región"
+          label="Promedio RegiÃ³n"
           value="4.7"
           trend="+0.2"
           isPositive={true}
@@ -104,7 +104,7 @@ export default function AdminDashboard() {
                     Establecimiento
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-outline uppercase tracking-wider">
-                    Categoría
+                    CategorÃ­a
                   </th>
                   <th className="px-8 py-4 text-[10px] font-bold text-outline uppercase tracking-wider">
                     Estado
@@ -223,7 +223,7 @@ export default function AdminDashboard() {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-sm font-bold text-on-surface">
-                        {i === 1 ? "Maria Alva" : "Raúl Soto"}
+                        {i === 1 ? "Maria Alva" : "RaÃºl Soto"}
                       </span>
                       <span className="text-[10px] text-on-surface-variant">
                         2h ago
@@ -231,14 +231,14 @@ export default function AdminDashboard() {
                     </div>
                     <p className="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
                       {i === 1
-                        ? 'El restaurante "La Pradera" mejoró su servicio, excelente atención.'
-                        : "Falta actualizar los horarios de Sóndor por temporada de lluvias."}
+                        ? 'El restaurante "La Pradera" mejorÃ³ su servicio, excelente atenciÃ³n.'
+                        : "Falta actualizar los horarios de SÃ³ndor por temporada de lluvias."}
                     </p>
                   </div>
                 </div>
               ))}
               <button className="w-full py-2 text-xs font-bold text-secondary uppercase hover:underline">
-                Ver todas las reseñas
+                Ver todas las reseÃ±as
               </button>
             </div>
           </div>

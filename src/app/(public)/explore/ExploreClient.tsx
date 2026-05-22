@@ -76,7 +76,7 @@ export default function ExploreClient({
       <aside className="w-full md:w-96 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col shadow-sm z-10">
         <div className="p-6 border-b border-outline-variant/20 bg-surface-bright/50">
           <h1 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-            <MapPin className="text-secondary w-5 h-5" /> Explorar Región
+            <MapPin className="text-secondary w-5 h-5" /> Explorar RegiÃ³n
           </h1>
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-outline w-4 h-4" />
@@ -219,7 +219,7 @@ export default function ExploreClient({
                         href={`/explore/${place.id}`}
                         className="text-xs font-bold text-secondary flex items-center gap-1"
                       >
-                        Ver más <Navigation className="w-3 h-3" />
+                        Ver mÃ¡s <Navigation className="w-3 h-3" />
                       </Link>
                     </div>
                   </div>
@@ -259,7 +259,7 @@ export default function ExploreClient({
                   <div className="flex items-center gap-2 text-sm opacity-90">
                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />{" "}
                     {selectedPlace.rating} ({selectedPlace.reviewsCount}{" "}
-                    reseñas)
+                    reseÃ±as)
                   </div>
                 </div>
               </div>
@@ -267,7 +267,7 @@ export default function ExploreClient({
               <div className="flex-1 p-8 overflow-y-auto space-y-6">
                 <div>
                   <h4 className="text-[10px] font-bold text-outline uppercase tracking-widest mb-2">
-                    Descripción
+                    DescripciÃ³n
                   </h4>
                   <p className="text-sm text-on-surface-variant leading-relaxed line-clamp-4">
                     {selectedPlace.description}
@@ -277,7 +277,7 @@ export default function ExploreClient({
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-3 bg-surface-container rounded-xl">
                     <h5 className="text-[10px] font-bold text-outline uppercase mb-1">
-                      Categoría
+                      CategorÃ­a
                     </h5>
                     <p className="text-xs font-bold text-primary">
                       {selectedPlace.subcategory || selectedPlace.category}
@@ -419,7 +419,7 @@ function MapKeySplashScreen() {
         </h2>
         <p className="text-on-surface-variant mb-10 leading-relaxed">
           Para visualizar el mapa interactivo de Andahuaylas se requiere una
-          clave de Google Maps Platform válida.
+          clave de Google Maps Platform vÃ¡lida.
         </p>
 
         <div className="w-full bg-surface-container-low rounded-3xl p-8 text-left space-y-6 mb-10 border border-outline-variant/10">
@@ -453,7 +453,7 @@ function MapKeySplashScreen() {
         </div>
 
         <p className="text-[10px] text-outline uppercase tracking-widest">
-          Plataforma de Información Turística Centralizada
+          Plataforma de InformaciÃ³n TurÃ­stica Centralizada
         </p>
       </div>
     </div>
