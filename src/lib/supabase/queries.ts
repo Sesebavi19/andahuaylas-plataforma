@@ -242,3 +242,83 @@ export async function deletePlace(id: string): Promise<boolean> {
 
   return true;
 }
+
+export interface Valoracion {
+  id: string;
+  lugar_id: string;
+  puntuacion: number;
+  creado_en: string;
+  lugar_nombre?: string;
+}
+
+export async function ratePlace(
+  lugarId: string,
+  puntuacion: number
+): Promise<boolean> {
+  const supabase = createClient();
+
+  const { error: insertError } = await supabase
+    .from("valoraciones")
+    .insert({ lugar_id: lugarId, puntuacion });
+
+  if (insertError) {
+    console.error("[Queries] Error inserting rating:", insertError);
+    return false;
+  }
+
+  const { data: ratings } = await supabase
+    .from("valoraciones")
+    .select("puntuacion")
+    .eq("lugar_id", lugarId);
+
+  if (!ratings || ratings.length === 0) return false;
+
+  const avg =
+    ratings.reduce((sum, r) => sum + r.puntuacion, 0) / ratings.length;
+  const roundedAvg = Math.round(avg * 10) / 10;
+
+  const { error: updateError } = await supabase
+    .from("lugares")
+    .update({ rating: roundedAvg, reviews_count: ratings.length })
+    .eq("id", lugarId);
+
+  if (updateError) {
+    console.error("[Queries] Error updating place rating:", updateError);
+    return false;
+  }
+
+  return true;
+}
+
+export async function getValoraciones(): Promise<Valoracion[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("valoraciones")
+    .select("id, lugar_id, puntuacion, creado_en")
+    .order("creado_en", { ascending: false });
+
+  if (error) {
+    console.error("[Queries] Error fetching valoraciones:", error);
+    return [];
+  }
+
+  const lugares = await getPlaces();
+  const lugarMap = new Map(lugares.map((l) => [l.id, l.name]));
+
+  return (data || []).map((v) => ({
+    ...v,
+    lugar_nombre: lugarMap.get(v.lugar_id) || "Desconocido",
+  }));
+}
+
+export async function deleteValoracion(id: string): Promise<boolean> {
+  const supabase = createClient();
+  const { error } = await supabase.from("valoraciones").delete().eq("id", id);
+
+  if (error) {
+    console.error("[Queries] Error deleting valoracion:", error);
+    return false;
+  }
+
+  return true;
+}

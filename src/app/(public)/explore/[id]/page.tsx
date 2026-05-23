@@ -9,7 +9,6 @@ import {
   Phone,
   Globe,
   Share2,
-  Heart,
   Star,
   ArrowLeft,
   Navigation,
@@ -17,10 +16,12 @@ import {
   Camera,
   Calendar,
   Flag,
+  X,
+  ThumbsUp,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { Place } from "@/types";
-import { getPlaceById, getPlaces } from "@/lib/supabase/queries";
+import { getPlaceById, getPlaces, ratePlace } from "@/lib/supabase/queries";
 
 export default function PlaceDetails() {
   const { id } = useParams();
@@ -28,6 +29,11 @@ export default function PlaceDetails() {
   const [place, setPlace] = useState<Place | null>(null);
   const [relatedItems, setRelatedItems] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [ratingValue, setRatingValue] = useState(0);
+  const [ratingHover, setRatingHover] = useState(0);
+  const [ratingSubmitting, setRatingSubmitting] = useState(false);
+  const [ratingSuccess, setRatingSuccess] = useState(false);
 
   useEffect(() => {
     if (typeof id !== "string") return;
@@ -41,6 +47,22 @@ export default function PlaceDetails() {
       setLoading(false);
     });
   }, [id]);
+
+  const handleRate = async (puntuacion: number) => {
+    if (!place || ratingSubmitting) return;
+    setRatingSubmitting(true);
+    const ok = await ratePlace(place.id, puntuacion);
+    setRatingSubmitting(false);
+    if (ok) {
+      setRatingSuccess(true);
+      getPlaceById(place.id).then((p) => { if (p) setPlace(p); });
+      setTimeout(() => {
+        setShowRatingModal(false);
+        setRatingSuccess(false);
+        setRatingValue(0);
+      }, 1500);
+    }
+  };
 
   if (loading) {
     return (
@@ -109,8 +131,11 @@ export default function PlaceDetails() {
             <button className="bg-white/10 backdrop-blur-md hover:bg-white/20 p-3 rounded-2xl text-white border border-white/20 transition-all shadow-lg">
               <Share2 className="w-6 h-6" />
             </button>
-            <button className="bg-white/10 backdrop-blur-md hover:bg-white/20 p-3 rounded-2xl text-white border border-white/20 transition-all shadow-lg">
-              <Heart className="w-6 h-6" />
+            <button
+              onClick={() => setShowRatingModal(true)}
+              className="bg-white/10 backdrop-blur-md hover:bg-yellow-400/30 p-3 rounded-2xl text-white border border-white/20 transition-all shadow-lg"
+            >
+              <Star className="w-6 h-6" />
             </button>
           </div>
         </div>
@@ -298,6 +323,81 @@ export default function PlaceDetails() {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {showRatingModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+            onClick={() => !ratingSubmitting && setShowRatingModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-surface-container-lowest rounded-[40px] p-10 max-w-sm w-full shadow-2xl border border-outline-variant/20 text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {ratingSuccess ? (
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                    <ThumbsUp className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary mb-2">
+                    ¡Gracias por tu voto!
+                  </h3>
+                  <p className="text-on-surface-variant text-sm">
+                    Tu calificación ha sido registrada.
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={() => setShowRatingModal(false)}
+                    className="absolute top-6 right-6 p-2 hover:bg-surface-container rounded-full transition-all text-on-surface-variant"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <h3 className="text-2xl font-bold text-primary mb-2">
+                    Califica este lugar
+                  </h3>
+                  <p className="text-on-surface-variant text-sm mb-8">
+                    ¿Qué te pareció {place?.name}?
+                  </p>
+                  <div className="flex justify-center gap-3 mb-8">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        onClick={() => handleRate(star)}
+                        onMouseEnter={() => setRatingHover(star)}
+                        onMouseLeave={() => setRatingHover(0)}
+                        disabled={ratingSubmitting}
+                        className="transition-all hover:scale-110 disabled:opacity-50"
+                      >
+                        <Star
+                          className={`w-10 h-10 ${
+                            star <= (ratingHover || ratingValue)
+                              ? "text-yellow-400 fill-yellow-400"
+                              : "text-outline"
+                          } transition-colors`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  {ratingSubmitting && (
+                    <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin mx-auto" />
+                  )}
+                  <p className="text-xs text-on-surface-variant">
+                    Toca una estrella para calificar
+                  </p>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
