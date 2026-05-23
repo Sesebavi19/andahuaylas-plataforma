@@ -85,10 +85,10 @@ export default function Home() {
           </motion.div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <PillButton icon={<TreePine className="w-4 h-4" />} label="Turismo" onClick={() => router.push("/explore?cat=turismo")} />
-            <PillButton icon={<Utensils className="w-4 h-4" />} label="Gastronomía" onClick={() => router.push("/explore?cat=gastronomia")} />
-            <PillButton icon={<Store className="w-4 h-4" />} label="Comercio" onClick={() => router.push("/explore?cat=comercio")} />
-            <PillButton icon={<Building2 className="w-4 h-4" />} label="Hospedaje" onClick={() => router.push("/explore?cat=hospedaje")} />
+            <PillButton colorScheme="green" icon={<TreePine className="w-4 h-4" />} label="Turismo" onClick={() => router.push("/explore?cat=turismo")} />
+            <PillButton colorScheme="amber" icon={<Utensils className="w-4 h-4" />} label="Gastronomía" onClick={() => router.push("/explore?cat=gastronomia")} />
+            <PillButton colorScheme="blue" icon={<Store className="w-4 h-4" />} label="Comercio" onClick={() => router.push("/explore?cat=comercio")} />
+            <PillButton colorScheme="purple" icon={<Building2 className="w-4 h-4" />} label="Hospedaje" onClick={() => router.push("/explore?cat=hospedaje")} />
           </div>
         </div>
       </section>
@@ -268,17 +268,26 @@ function PillButton({
   icon,
   label,
   onClick,
+  colorScheme,
 }: {
   icon: React.ReactNode;
   label: string;
   onClick: () => void;
+  colorScheme?: "green" | "amber" | "blue" | "purple";
 }) {
+  const colorMap: Record<string, string> = {
+    green: "text-green-600 border-green-300/50 hover:bg-green-600",
+    amber: "text-amber-600 border-amber-300/50 hover:bg-amber-600",
+    blue: "text-blue-600 border-blue-300/50 hover:bg-blue-600",
+    purple: "text-purple-600 border-purple-300/50 hover:bg-purple-600",
+  };
+  const cls = colorMap[colorScheme ?? ""] || "text-primary border-outline-variant/50 hover:bg-secondary";
   return (
     <button
       onClick={onClick}
-      className="bg-surface-bright/90 backdrop-blur-sm border border-outline-variant/50 text-primary px-5 py-2.5 rounded-full font-medium shadow-sm hover:bg-secondary hover:text-on-secondary transition-all flex items-center gap-2 group"
+      className={`bg-surface-bright/90 backdrop-blur-sm border px-5 py-2.5 rounded-full font-medium shadow-sm hover:text-on-secondary transition-all flex items-center gap-2 group ${cls}`}
     >
-      <span className="text-secondary group-hover:text-current">{icon}</span>
+      <span className="group-hover:text-current">{icon}</span>
       {label}
     </button>
   );
